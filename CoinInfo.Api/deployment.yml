@@ -26,7 +26,7 @@ items:
           run: coininfo-api
       spec:
         containers:
-        - image: lucienmartijn/coininfo.api:v1.1.4
+        - image: PLACEHOLDER_IMAGE_LOCATION
           imagePullPolicy: Always
           name: coininfo-api
           ports:
