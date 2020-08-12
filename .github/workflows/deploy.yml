@@ -22,6 +22,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
           
+      - name: Find and Replace deployment manifest
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: COINMARKETCAP_API_KEY
+          replace: ${{ secrets.COINMARKETCAP_API_KEY }} 
+
+      - name: Find and Replace deployment manifest
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: CRYPTO_COMPARE_API_KEY
+          replace: ${{ secrets.CRYPTO_COMPARE_API_KEY }} 
+          
       - name: Build and Publish Docker image
         uses: docker/build-push-action@v1.1.0
         with:
@@ -42,18 +54,6 @@ jobs:
         with:
           find: COINMARKETCAP_API_KEY
           replace: ${{ secrets.COIN_API_KEY }} 
-          
-      - name: Find and Replace deployment manifest
-        uses: jacobtomlinson/gha-find-replace@master
-        with:
-          find: COINMARKETCAP_API_KEY
-          replace: ${{ secrets.COINMARKETCAP_API_KEY }} 
-
-      - name: Find and Replace deployment manifest
-        uses: jacobtomlinson/gha-find-replace@master
-        with:
-          find: CRYPTO_COMPARE_API_KEY
-          replace: ${{ secrets.CRYPTO_COMPARE_API_KEY }} 
 
       - name: Deploy Docker Image
         uses: Jberlinsky/kubernetes-action@master
